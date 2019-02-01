@@ -4,8 +4,8 @@ import ColorContext from '../contexts/ColorContext';
 
 export class Button extends Component {
 
-  renderSubmit(value) {
-    return value === 'english' ? 'Submit' : 'Voorlegen';
+  renderSubmit(language) {
+    return language === 'english' ? 'Submit' : 'Voorlegen';
   }
 
   renderButton(color) {
@@ -13,7 +13,9 @@ export class Button extends Component {
       <button className={`ui button ${color}`}>
       {/* //this approach is necessary when using multiple contexts */}
         <LanguageContext.Consumer>
-          {(value) => this.renderSubmit(value)}
+          {( { language } ) => this.renderSubmit(language)}
+          {/* value={{ ...this.state **OR** {language: english}, onLanguageChange: this.onLanguageChange }}> */}
+          {/* value is equal to an object rather than a string */}
         </LanguageContext.Consumer>
       </button>
     )
